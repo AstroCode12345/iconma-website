@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Logo check: original against redrawn SVG</title>
+<style>
+  body { font: 14px/1.5 system-ui, sans-serif; margin: 16px; background: #fff; color: #111; }
+  h1 { font-size: 18px; margin: 0 0 4px; }
+  pre { background: #f3f4f6; padding: 12px; overflow: auto; font-size: 12px; }
+  canvas { max-width: 100%; height: auto; border: 1px solid #ccc; background: #fff; }
+  .row { display: flex; gap: 12px; flex-wrap: wrap; margin: 12px 0; }
+  figure { margin: 0; } figcaption { font-size: 12px; color: #555; }
+</style>
+</head>
+<body>
+<h1>Logo check: original against redrawn SVG</h1>
+<p>Developer tool, not part of the site. Both are drawn at 1468 x 1071 and compared on the 50 percent edge of each shape. Use <code>?svg=/images/logo-lockup.svg</code> to test another file.</p>
+<div class="row">
+  <figure><img src="/_source/logo-original.webp" width="440" alt="Original logo from the president"><figcaption>Original (soft raster)</figcaption></figure>
+  <figure><img id="redrawn" src="/images/logo-lockup.svg" width="440" alt="Redrawn logo as SVG"><figcaption>Redrawn as SVG</figcaption></figure>
+</div>
+<div class="row">
+  <figure><canvas id="bigRaster" width="560" height="405"></canvas><figcaption>Original mark enlarged: soft edges</figcaption></figure>
+  <figure><img id="bigSvg" src="/images/logo-mark.svg" width="560" alt="Redrawn mark enlarged"><figcaption>Redrawn mark at the same size: crisp</figcaption></figure>
+</div>
+<pre id="out">running...</pre>
+<div class="row">
+  <figure><canvas id="diff" width="1468" height="1071"></canvas><figcaption>Original (grey) with every pixel the two disagree on in red. A thin red outline is sub-pixel edge difference; anything solid is a real shape error.</figcaption></figure>
+</div>
+<div class="row" id="zooms"></div>
+<script>
+const W = 1468, H = 1071, BG = [246, 248, 252];
+const params = new URLSearchParams(location.search);
+const svgSrc = params.get("svg") || "/images/logo-lockup.svg";
+const load = (src) => new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = () => no(new Error("could not load " + src)); i.src = src + (src.includes("?") ? "&" : "?") + "t=" + Date.now(); });
+function raster(img) {
+  const c = document.createElement("canvas"); c.width = W; c.height = H;
+  const x = c.getContext("2d", { willReadFrequently: true });
+  x.fillStyle = "#F6F8FC"; x.fillRect(0, 0, W, H); x.drawImage(img, 0, 0, W, H);
+  return { c, px: x.getImageData(0, 0, W, H).data };
+}
+function dist(px) {
+  const d = new Float32Array(W * H);
+  for (let i = 0, j = 0; i < d.length; i++, j += 4) { const a = px[j] - BG[0], b = px[j + 1] - BG[1], c = px[j + 2] - BG[2]; d[i] = Math.sqrt(a * a + b * b + c * c); }
+  return d;
+}
+function maxfilter(d, r) {
+  const t = new Float32Array(W * H), o = new Float32Array(W * H);
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { let m = 0; for (let k = Math.max(0, x - r); k <= Math.min(W - 1, x + r); k++) m = Math.max(m, d[y * W + k]); t[y * W + x] = m; }
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { let m = 0; for (let k = Math.max(0, y - r); k <= Math.min(H - 1, y + r); k++) m = Math.max(m, t[k * W + x]); o[y * W + x] = m; }
+  return o;
+}
+function binarize(d) { const M = maxfilter(d, 3); const b = new Uint8Array(W * H); for (let i = 0; i < b.length; i++) b[i] = (M[i] > 60 && d[i] > 0.5 * M[i]) ? 1 : 0; return b; }
+function boundary(b) {
+  const e = new Uint8Array(W * H);
+  for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) { const i = y * W + x; if (b[i] !== b[i - 1] || b[i] !== b[i + 1] || b[i] !== b[i - W] || b[i] !== b[i + W]) e[i] = 1; }
+  return e;
+}
+function dilate(m, n) {
+  let cur = m;
+  for (let k = 0; k < n; k++) { const o = new Uint8Array(W * H); for (let y = 1; y < H - 1; y++) for (let x = 1; x < W - 1; x++) { const i = y * W + x; if (cur[i] || cur[i - 1] || cur[i + 1] || cur[i - W] || cur[i + W] || cur[i - W - 1] || cur[i - W + 1] || cur[i + W - 1] || cur[i + W + 1]) o[i] = 1; } cur = o; }
+  return cur;
+}
+(async () => {
+  const [a, b] = await Promise.all([load("/_source/logo-original.webp"), load(svgSrc)]);
+  b.width = W; b.height = H;
+  const A = raster(a), B = raster(b);
+  const bA = binarize(dist(A.px)), bB = binarize(dist(B.px));
+  const edge = boundary(bA), band = dilate(edge, 2);
+  const regions = { mark: [0, 0, W, 460], wordmark: [0, 540, W, 770], rule: [0, 798, W, 826], captionName: [0, 870, W, 945], captionUrl: [0, 985, W, 1055] };
+  const report = {}; const far = new Uint8Array(W * H);
+  for (const [name, [x0, y0, x1, y1]] of Object.entries(regions)) {
+    let xor = 0, per = 0, farN = 0, ink = 0;
+    for (let y = y0; y < y1; y++) for (let x = x0; x < x1; x++) { const i = y * W + x; if (bA[i]) ink++; if (edge[i]) per++; if (bA[i] !== bB[i]) { xor++; if (!band[i]) { farN++; far[i] = 1; } } }
+    report[name] = { inkPixels: ink, edgePixels: per, disagree: xor, meanEdgeError_px: +(xor / Math.max(per, 1)).toFixed(3), farFromAnyEdge: farN };
+  }
+  // where are the worst places? count disagreements on a 40px grid
+  const cells = {};
+  for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) { const i = y * W + x; if (bA[i] !== bB[i]) { const k = Math.floor(x / 40) * 40 + "," + Math.floor(y / 40) * 40; cells[k] = (cells[k] || 0) + 1; } }
+  report.worstCells = Object.entries(cells).sort((p, q) => q[1] - p[1]).slice(0, 12).map(([k, v]) => k + " : " + v);
+  // paint
+  const dc = document.getElementById("diff"), g = dc.getContext("2d"); const out = g.createImageData(W, H);
+  for (let i = 0, j = 0; i < W * H; i++, j += 4) {
+    const grey = bA[i] ? 90 : 245; let r = grey, gg = grey, bl = grey;
+    if (bA[i] !== bB[i]) { r = 230; gg = 40; bl = 40; }
+    out.data[j] = r; out.data[j + 1] = gg; out.data[j + 2] = bl; out.data[j + 3] = 255;
+  }
+  g.putImageData(out, 0, 0);
+  window.__ctx = { A, B, bA, bB };
+  { const c = document.getElementById("bigRaster"), q = c.getContext("2d"); q.drawImage(A.c, 440, 21, 589, 426, 0, 0, c.width, c.height); }
+  window.zoomAt = (x, y, w, h, s = 6) => {
+    const c = document.createElement("canvas"); c.width = w * s; c.height = h * s; const q = c.getContext("2d"); q.imageSmoothingEnabled = false;
+    q.drawImage(A.c, x, y, w, h, 0, 0, w * s, h * s); q.globalCompositeOperation = "difference"; q.drawImage(B.c, x, y, w, h, 0, 0, w * s, h * s);
+    const f = document.createElement("figure"); f.append(c); const cap = document.createElement("figcaption"); cap.textContent = `difference (black = identical) at x ${x} y ${y}, ${s}x`; f.append(cap); document.getElementById("zooms").append(f);
+  };
+  window.__result = report;
+  document.getElementById("out").textContent = JSON.stringify(report, null, 2);
+})().catch((e) => { document.getElementById("out").textContent = "ERROR " + e.message; window.__result = { error: e.message }; });
+</script>
+</body>
+</html>

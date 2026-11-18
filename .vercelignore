@@ -1,0 +1,15 @@
+# What gets uploaded to Vercel. The first line ignores everything at the top level; each "!"
+# line lets one thing back in. So only the website goes up, and the original logo, the
+# president's doc, the tools and the planning notes (which hold unconfirmed facts) stay off the site.
+/*
+!/index.html
+!/404.html
+!/about
+!/styles.css
+!/app.js
+!/content.js
+!/content.json
+!/images
+!/robots.txt
+!/sitemap.xml
+!/vercel.json

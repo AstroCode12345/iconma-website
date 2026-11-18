@@ -1,0 +1,10 @@
+{
+  "contact": {
+    "email": "info@iconma.org",
+    "mailing": ["229 Woodcliff Rd", "Newton, MA 02461"]
+  },
+  "announcement": {
+    "show": false,
+    "text": ""
+  }
+}

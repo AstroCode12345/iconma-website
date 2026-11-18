@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="440 21 589 426" role="img" aria-labelledby="t">
+  <title id="t">ICONMA mark: a dome with a crescent and star</title>
+  <g id="mark">
+    <g fill="none" stroke="#0E5C1F">
+      <path id="outer-arc-left" stroke-width="14.04" d="M504.54 307.68A229.24 229.24 0 0 1 678.2 85.28"/>
+      <path id="outer-arc-right" stroke-width="14.04" d="M801.38 88.64A229.24 229.24 0 0 1 963.01 307.68"/>
+    </g>
+    <circle fill="#0E5C1F" cx="504.54" cy="307.68" r="7.02"/>
+    <circle fill="#0E5C1F" cx="963.01" cy="307.68" r="7.02"/>
+    <path id="inner-arc" fill="none" stroke="#C69B35" stroke-width="13.57" stroke-linecap="round" d="M573.59 307.25A160 160 0 0 1 893.58 307.25"/>
+    <g fill="none" stroke="#0E5C1F">
+      <line id="pillar" x1="734.87" y1="139.31" x2="734.87" y2="435.98" stroke-width="14.62"/>
+      <line id="post-left" x1="541.94" y1="308.36" x2="541.94" y2="435.98" stroke-width="9.13" stroke-linecap="round"/>
+      <line id="post-right" x1="926.75" y1="308.48" x2="926.75" y2="435.98" stroke-width="9.36" stroke-linecap="round"/>
+      <line id="base" x1="450.49" y1="435.98" x2="1018.46" y2="435.98" stroke-width="12.87" stroke-linecap="round"/>
+    </g>
+    <path id="crescent" fill="#C69B35" d="M743.09 25.61A54.27 54.27 0 1 0 794.5 80.67A44.3 44.3 0 1 1 743.09 25.61Z"/>
+    <path id="star" fill="#C69B35" d="M758.87 43.45L764.41 62L783.61 62.12L768.46 72.98L773.79 90.79L758.89 80.02L743.43 91.39L749.33 73.03L734.06 62.01L753.37 62.19Z"/>
+  </g>
+</svg>

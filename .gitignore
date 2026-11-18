@@ -1,0 +1,10 @@
+.DS_Store
+Thumbs.db
+.claude/
+
+# Python's compiled copies of tools/logo/*.py
+__pycache__/
+*.pyc
+
+# Vercel's local link to the project; each machine makes its own
+.vercel/
