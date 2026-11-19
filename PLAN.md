@@ -31,7 +31,7 @@ Two-page starter site (Home, About) for the Islamic Center of Newton, so the cen
 3. **Logo file.** If the president has the original vector (SVG, AI or PDF), send it. Until then we use the redraw.
 4. **Logo rule.** The gold line under ICONMA runs edge to edge in the supplied image. The redrawn lockup copies that. Confirm it is meant to.
 5. **Wording.** "Mailing address" instead of "Address".
-6. **ICON or ICONMA.** The new logo's wordmark says ICON, while page titles, descriptions, the share-preview text and his doc still say ICONMA (the domain and the logo's last line are still iconma.org). Which short name does the center want in the text?
+6. **ICON or ICONMA (decided 2026-11-18).** Taymour chose to keep ICONMA in the page text, titles and accessible labels. The new logo's wordmark itself reads ICON, so the center may want to confirm that is what they mean it to say.
 
 ## Log
 ### 2026-11-16
@@ -57,7 +57,7 @@ Two-page starter site (Home, About) for the Islamic Center of Newton, so the cen
 
 ### 2026-11-18
 - The president sent a new logo. Same dome, but the wordmark is now ICON in a different typeface, and the colours are richer (see Confirmed facts). Rebuilt it: the mark is fitted circles and lines again (the two arcs are now fitted from their real edges, which cut their error roughly in half), and the lettering is **traced** (outline found at the 50 percent edge, split at corners, fitted with cubic curves), since there is no font for it. The generator is `tools/logo/build_logo.py` (needs only numpy). Checked with `_source/compare.html`: mean edge error 0.04 px on the wordmark, 0.05 and 0.07 on the two caption lines, 0.16 px on the mark. A few dozen pixels at the crescent's razor tips are over 1 px because the source itself is blurred there.
-- Used across the site: new symbols in all three pages (`tools/build-symbols.py` now reads the colours from the lockup and sizes the wordmark from its outline), new colour tokens in `styles.css`, the wordmark resized (ICON is a much squarer shape than ICONMA), the horizon line moved to match the mark's base line, logo labels now say ICON, and the favicon, home-screen icon and link preview regenerated. The ground stays the cooler `#F6F8FC` (the logo's own ground is plain white).
+- Used across the site: new symbols in all three pages (`tools/build-symbols.py` now reads the colours from the lockup and sizes the wordmark from its outline), new colour tokens in `styles.css`, the wordmark resized (ICON is a much squarer shape than ICONMA), the horizon line moved to match the mark's base line, and the favicon, home-screen icon and link preview regenerated. The ground stays the cooler `#F6F8FC` (the logo's own ground is plain white).
 - Checked at 360 px on Home, About and 404: no sideways scroll, no small tap targets, no contrast failures; detector clean.
-- Open: page titles, descriptions and the share-preview text still say ICONMA (question 6 above).
+- Decided later the same day: the name in text and labels stays ICONMA (the logo graphic reads ICON). Question 6 above is for the center to confirm.
 
