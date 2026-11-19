@@ -21,7 +21,7 @@ import tempfile
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 IMG = ROOT / "images"
-GROUND, DEEP, GOLD = "#F6F8FC", "#12371C", "#E0B650"
+GROUND, DEEP, GOLD = "#F6F8FC", "#014405", "#E3B72C"
 
 lockup = (IMG / "logo-lockup.svg").read_text(encoding="utf8")
 crescent = re.search(r'<path id="crescent"[^>]* d="([^"]+)"', lockup).group(1)
@@ -41,11 +41,12 @@ favicon = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 '''
 (IMG / "favicon.svg").write_text(favicon, encoding="utf8")
 
-# the lockup is 1468 x 1071; fit it in 560 px of the 630 px height
-s = 560 / 1071
+# fit the lockup in 560 px of the 630 px height
+LW, LH = map(int, re.search(r'viewBox="0 0 (\d+) (\d+)"', lockup).groups())
+s = 560 / LH
 og = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
   <rect width="1200" height="630" fill="{GROUND}"/>
-  <g transform="translate({(1200 - 1468 * s) / 2:.2f} 35) scale({s:.5f})">{inner}</g>
+  <g transform="translate({(1200 - LW * s) / 2:.2f} 35) scale({s:.5f})">{inner}</g>
 </svg>
 '''
 

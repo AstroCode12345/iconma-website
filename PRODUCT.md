@@ -27,7 +27,7 @@ Two pages, Home and About. Content comes only from the president's doc (kept in 
 - Undecided: the final look (three directions are built for review), hosting and domain DNS, whether the president has a vector original of the logo.
 
 ## Brand Commitments
-The president's logo is binding: green dome arcs, gold inner arch and crescent, ICONMA in DejaVu Sans, redrawn as SVG in `images/`. Measured colours: green #0E5C1F, gold #C69B35, dark green #12371C, light green #58924D, ground #F6F8FC. Lowkey tone. Taymour never wants copy that claims he hand-coded anything, and no em dashes.
+The president's logo is binding: green dome arcs, gold inner arch and crescent, an ICON wordmark with the full name and iconma.org beneath, redrawn as SVG in `images/`. This is his second version (2026-11-18); the first said ICONMA. Measured colours: green #025107, gold #CA9703, wordmark green #014405, caption green #063909, light green #409210, on plain white. Lowkey tone. Taymour never wants copy that claims he hand-coded anything, and no em dashes.
 
 ## Evidence on Hand
 The president's doc (ayah Surah Al-Ma'idah 5:2, four-point mission, address, email, EIN line) and the logo image, both in `_source/`. No photos, testimonials, events, board names or numbers exist. Do not invent any.

@@ -10,15 +10,15 @@ Cool white and thin line. The logo's own geometry (two dome arcs, crescent, star
 
 | Token | Value | Role |
 |---|---|---|
-| `--bg` | `#F6F8FC` | The page. The logo's own ground. |
+| `--bg` | `#F6F8FC` | The page. A touch cooler than the logo's plain white ground. |
 | `--tint` | `#E9EFF6` | The one tinted band, behind the ayah. |
-| `--ink` | `#12371C` | Text. 11.9:1 on `--bg`. |
-| `--ink-soft` | `#3C5B45` | Secondary text. 7:1 on `--bg`. |
-| `--green` | `#0E5C1F` | Links on hover, focus ring, the logo's arcs. |
-| `--gold` | `#C69B35` | Decoration only on light: arches, underlines, the inner dome line. 2.5:1, so never text. |
-| `--deep` | `#12371C` | The footer block. |
+| `--ink` | `#063909` | Text. The logo's caption green. 12.4:1 on `--bg`. |
+| `--ink-soft` | `#2F5E36` | Secondary text. 7:1 on `--bg`. |
+| `--green` | `#025107` | Links on hover, focus ring, the logo's arcs. |
+| `--gold` | `#CA9703` | Decoration only on light: arches, underlines, the inner dome line. 2.5:1, so never text. |
+| `--deep` | `#014405` | The footer block, and the wordmark's green. |
 | `--pale-soft` | `#C9DCCB` | Text on the footer. |
-| `--gold-lit` | `#E0B650` | The only gold allowed to carry colour on the deep block. |
+| `--gold-lit` | `#E3B72C` | The only gold allowed to carry colour on the deep block. |
 | `--hair`, `--hair-strong` | green at 22% and 40% | Rules. |
 
 Gold is rationed: it appears as a line or a shape, never as body text on a light ground.
@@ -45,7 +45,7 @@ One column width (`--wrap`, 70rem) with a fluid gutter. Sections that hold a lab
 
 ## The parts
 
-- **Nav:** the mark and ICONMA wordmark, then Home, About, Contact. Hairline underneath. No menu button: three links fit at 360px.
+- **Nav:** the mark and the ICON wordmark, then Home, About, Contact. Hairline underneath. No menu button: three links fit at 360px.
 - **Hero (Home):** the mark is the largest thing on the page. Its base line runs on across the whole width as a horizon. "Founded in 2024" and "Newton, Massachusetts" sit on that line, one at each end. The wordmark and full name sit below it.
 - **Ayah band (Home):** a tinted full-width stage. The dome's two arcs are drawn large behind the verse (outer in green, inner in gold) and the crescent sits at the top of the dome. The band's bottom edge is a base line.
 - **Mission:** a gold arch before each line, hairlines between lines. On Home the four lead phrases link to About. On About the four sentences are in full.
@@ -60,7 +60,7 @@ One moment: the hero mark draws itself (stroke by stroke), then its solid parts 
 
 ## The logo in code
 
-`images/logo-lockup.svg` is the full lockup, redrawn from the president's image. The pages carry three symbols (`#mark`, `#crescent`, `#wordmark`), written in by `tools/build-symbols.py`, which read `--mk-green`, `--mk-gold` and `--wm`. That is how the footer shows the mark light on green without a second copy of the art. Every stroke has `pathLength="1"`, which is what lets one `stroke-dashoffset` animation draw the whole mark.
+`images/logo-lockup.svg` is the full lockup, redrawn from the president's image. This is his second logo (2026-11-18): the first said ICONMA in DejaVu Sans. The mark is fitted circles and lines, and the lettering is traced from the image, because the new typeface is not a font we have. The pages carry three symbols (`#mark`, `#crescent`, `#wordmark`), written in by `tools/build-symbols.py`, which read `--mk-green`, `--mk-gold` and `--wm`. That is how the footer shows the mark light on green without a second copy of the art. Every stroke has `pathLength="1"`, which is what lets one `stroke-dashoffset` animation draw the whole mark.
 
 ## Keep
 

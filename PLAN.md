@@ -10,7 +10,7 @@ Two-page starter site (Home, About) for the Islamic Center of Newton, so the cen
 - Ayah for the home page: Surah Al-Ma'idah 5:2, "And cooperate in righteousness and piety." Arabic copied exactly from the doc. (doc)
 - Mission statement, four points, for the About page. (doc)
 - 501(c)(3) nonprofit, EIN 33-1418409, for the footer. Not verified. (doc)
-- Logo supplied as a soft raster, 1468 x 1071. Original kept in `_source/logo-original.webp`. Lettering is DejaVu Sans, a free font. Colours measured from the raster: green #0E5C1F, gold #C69B35, dark green #12371C, light green #58924D, background #F6F8FC.
+- Logo, second version (2026-11-18): a soft raster, 1470 x 1070, on plain white. The wordmark now reads ICON (the first version read ICONMA in DejaVu Sans; that image is kept as `_source/logo-original-v1-iconma.webp`). Original kept in `_source/logo-original.webp`. Colours measured from it: mark green #025107, gold #CA9703, wordmark green #014405, caption green #063909, light green #409210.
 
 ## Decisions
 | Area | Decision | Why |
@@ -31,6 +31,7 @@ Two-page starter site (Home, About) for the Islamic Center of Newton, so the cen
 3. **Logo file.** If the president has the original vector (SVG, AI or PDF), send it. Until then we use the redraw.
 4. **Logo rule.** The gold line under ICONMA runs edge to edge in the supplied image. The redrawn lockup copies that. Confirm it is meant to.
 5. **Wording.** "Mailing address" instead of "Address".
+6. **ICON or ICONMA.** The new logo's wordmark says ICON, while page titles, descriptions, the share-preview text and his doc still say ICONMA (the domain and the logo's last line are still iconma.org). Which short name does the center want in the text?
 
 ## Log
 ### 2026-11-16
@@ -53,3 +54,10 @@ Two-page starter site (Home, About) for the Islamic Center of Newton, so the cen
 - Design choice to confirm: the favicon and home-screen icon are the crescent and star on a deep green tile, because the full dome is too fine at 16px. That tile is not in the president's logo.
 - Not tested: `vercel.json` and `.vercelignore` against a real deploy (the same allow-list pattern works for Flick); a real iPhone; the link preview in WhatsApp; the hero draw-in and hover underlines by eye. Fonts load from Google Fonts.
 - Still needs the masjid: the president confirming the EIN sentence and "1446 AH"; the info@iconma.org mailbox; the GitHub organization and Vercel project in the masjid's own accounts; DNS at the registrar. Nothing is committed to git.
+
+### 2026-11-18
+- The president sent a new logo. Same dome, but the wordmark is now ICON in a different typeface, and the colours are richer (see Confirmed facts). Rebuilt it: the mark is fitted circles and lines again (the two arcs are now fitted from their real edges, which cut their error roughly in half), and the lettering is **traced** (outline found at the 50 percent edge, split at corners, fitted with cubic curves), since there is no font for it. The generator is `tools/logo/build_logo.py` (needs only numpy). Checked with `_source/compare.html`: mean edge error 0.04 px on the wordmark, 0.05 and 0.07 on the two caption lines, 0.16 px on the mark. A few dozen pixels at the crescent's razor tips are over 1 px because the source itself is blurred there.
+- Used across the site: new symbols in all three pages (`tools/build-symbols.py` now reads the colours from the lockup and sizes the wordmark from its outline), new colour tokens in `styles.css`, the wordmark resized (ICON is a much squarer shape than ICONMA), the horizon line moved to match the mark's base line, logo labels now say ICON, and the favicon, home-screen icon and link preview regenerated. The ground stays the cooler `#F6F8FC` (the logo's own ground is plain white).
+- Checked at 360 px on Home, About and 404: no sideways scroll, no small tap targets, no contrast failures; detector clean.
+- Open: page titles, descriptions and the share-preview text still say ICONMA (question 6 above).
+

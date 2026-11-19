@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="440 21 589 426" role="img" aria-labelledby="t">
-  <title id="t">ICONMA mark: a dome with a crescent and star</title>
+  <title id="t">ICON mark: a dome with a crescent and star</title>
   <g id="mark">
-    <g fill="none" stroke="#0E5C1F">
-      <path id="outer-arc-left" stroke-width="14.04" d="M504.54 307.68A229.24 229.24 0 0 1 678.2 85.28"/>
-      <path id="outer-arc-right" stroke-width="14.04" d="M801.38 88.64A229.24 229.24 0 0 1 963.01 307.68"/>
+    <g fill="none" stroke="#025107">
+      <path id="outer-arc-left" stroke-width="15.3" d="M505.03 307.34A229.08 229.08 0 0 1 678.88 85.02"/>
+      <path id="outer-arc-right" stroke-width="15.3" d="M801.6 88.43A229.08 229.08 0 0 1 963.19 307.34"/>
     </g>
-    <circle fill="#0E5C1F" cx="504.54" cy="307.68" r="7.02"/>
-    <circle fill="#0E5C1F" cx="963.01" cy="307.68" r="7.02"/>
-    <path id="inner-arc" fill="none" stroke="#C69B35" stroke-width="13.57" stroke-linecap="round" d="M573.59 307.25A160 160 0 0 1 893.58 307.25"/>
-    <g fill="none" stroke="#0E5C1F">
-      <line id="pillar" x1="734.87" y1="139.31" x2="734.87" y2="435.98" stroke-width="14.62"/>
-      <line id="post-left" x1="541.94" y1="308.36" x2="541.94" y2="435.98" stroke-width="9.13" stroke-linecap="round"/>
-      <line id="post-right" x1="926.75" y1="308.48" x2="926.75" y2="435.98" stroke-width="9.36" stroke-linecap="round"/>
-      <line id="base" x1="450.49" y1="435.98" x2="1018.46" y2="435.98" stroke-width="12.87" stroke-linecap="round"/>
+    <circle fill="#025107" cx="505.03" cy="307.34" r="7.65"/>
+    <circle fill="#025107" cx="963.19" cy="307.34" r="7.65"/>
+    <path id="inner-arc" fill="none" stroke="#CA9703" stroke-width="13.8" stroke-linecap="round" d="M573.86 306.62A159.76 159.76 0 0 1 893.39 306.62"/>
+    <g fill="none" stroke="#025107">
+      <line id="pillar" x1="735.61" y1="138.32" x2="735.61" y2="436.92" stroke-width="16.54"/>
+      <line id="post-left" x1="542.73" y1="308.98" x2="542.73" y2="436.92" stroke-width="10.71" stroke-linecap="round"/>
+      <line id="post-right" x1="926.7" y1="309.07" x2="926.7" y2="436.92" stroke-width="11.05" stroke-linecap="round"/>
+      <line id="base" x1="451.73" y1="436.92" x2="1018.01" y2="436.92" stroke-width="15.33" stroke-linecap="round"/>
     </g>
-    <path id="crescent" fill="#C69B35" d="M743.09 25.61A54.27 54.27 0 1 0 794.5 80.67A44.3 44.3 0 1 1 743.09 25.61Z"/>
-    <path id="star" fill="#C69B35" d="M758.87 43.45L764.41 62L783.61 62.12L768.46 72.98L773.79 90.79L758.89 80.02L743.43 91.39L749.33 73.03L734.06 62.01L753.37 62.19Z"/>
+    <path id="crescent" fill="#CA9703" d="M745.39 26.27A53.31 53.31 0 1 0 794.43 78.31A43.27 43.27 0 1 1 745.39 26.27Z"/>
+    <path id="star" fill="#CA9703" d="M759.52 44.29L765.14 62.38L783.74 62.64L768.9 73.49L774.61 90.89L759.56 79.8L744.4 90.82L749.84 73.43L735.74 62.57L753.83 62.47Z"/>
   </g>
 </svg>

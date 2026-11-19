@@ -41,11 +41,11 @@ perl -pi -e 's/(styles\.css|content\.js|app\.js)\?v=[0-9a-z]+/$1?v=20261201a/g' 
 
 ## The logo and the small images
 
-The president sent the logo as a soft image. It was redrawn as clean SVG and checked against his image (under 1 pixel off everywhere).
+The president sent the logo as a soft image. It was redrawn as clean SVG (the mark as fitted circles and lines, the lettering traced from the image) and checked against his image, within about 1 pixel everywhere. The current logo is his second version; the first is kept in `_source/`.
 
 ```bash
 sips -s format bmp _source/logo-original.webp --out /tmp/iconma-logo.bmp
-uv run --with numpy --with fonttools --with matplotlib python tools/logo/build_logo.py /tmp/iconma-logo.bmp images
+uv run --with numpy python tools/logo/build_logo.py /tmp/iconma-logo.bmp images
 python3 tools/build-symbols.py      # puts the logo into every page, so it can be recoloured
 python3 tools/make-icons.py         # favicon, home-screen icon and link preview (macOS only)
 ```

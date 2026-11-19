@@ -16,7 +16,7 @@
 </head>
 <body>
 <h1>Logo check: original against redrawn SVG</h1>
-<p>Developer tool, not part of the site. Both are drawn at 1468 x 1071 and compared on the 50 percent edge of each shape. Use <code>?svg=/images/logo-lockup.svg</code> to test another file.</p>
+<p>Developer tool, not part of the site. Both are drawn at 1470 x 1070 and compared on the 50 percent edge of each shape. Use <code>?svg=/images/logo-lockup.svg</code> to test another file.</p>
 <div class="row">
   <figure><img src="/_source/logo-original.webp" width="440" alt="Original logo from the president"><figcaption>Original (soft raster)</figcaption></figure>
   <figure><img id="redrawn" src="/images/logo-lockup.svg" width="440" alt="Redrawn logo as SVG"><figcaption>Redrawn as SVG</figcaption></figure>
@@ -31,14 +31,14 @@
 </div>
 <div class="row" id="zooms"></div>
 <script>
-const W = 1468, H = 1071, BG = [246, 248, 252];
+const W = 1470, H = 1070, BG = [254, 254, 254];
 const params = new URLSearchParams(location.search);
 const svgSrc = params.get("svg") || "/images/logo-lockup.svg";
 const load = (src) => new Promise((ok, no) => { const i = new Image(); i.onload = () => ok(i); i.onerror = () => no(new Error("could not load " + src)); i.src = src + (src.includes("?") ? "&" : "?") + "t=" + Date.now(); });
 function raster(img) {
   const c = document.createElement("canvas"); c.width = W; c.height = H;
   const x = c.getContext("2d", { willReadFrequently: true });
-  x.fillStyle = "#F6F8FC"; x.fillRect(0, 0, W, H); x.drawImage(img, 0, 0, W, H);
+  x.fillStyle = "#FEFEFE"; x.fillRect(0, 0, W, H); x.drawImage(img, 0, 0, W, H);
   return { c, px: x.getImageData(0, 0, W, H).data };
 }
 function dist(px) {
@@ -69,7 +69,7 @@ function dilate(m, n) {
   const A = raster(a), B = raster(b);
   const bA = binarize(dist(A.px)), bB = binarize(dist(B.px));
   const edge = boundary(bA), band = dilate(edge, 2);
-  const regions = { mark: [0, 0, W, 460], wordmark: [0, 540, W, 770], rule: [0, 798, W, 826], captionName: [0, 870, W, 945], captionUrl: [0, 985, W, 1055] };
+  const regions = { mark: [0, 0, W, 460], wordmark: [0, 520, W, 770], rule: [0, 798, W, 826], captionName: [0, 870, W, 945], captionUrl: [0, 975, W, 1050] };
   const report = {}; const far = new Uint8Array(W * H);
   for (const [name, [x0, y0, x1, y1]] of Object.entries(regions)) {
     let xor = 0, per = 0, farN = 0, ink = 0;

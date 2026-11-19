@@ -6,19 +6,19 @@
    ========================================================================== */
 
 :root {
-  --bg: #F6F8FC;          /* the logo's own ground */
+  --bg: #F6F8FC;          /* cool white: a touch cooler than the logo's plain white ground */
   --tint: #E9EFF6;        /* the one tinted band, behind the ayah */
   --paper: #FFFFFF;
-  --ink: #12371C;         /* dark green, 11.9:1 on --bg */
-  --ink-soft: #3C5B45;    /* 7:1 on --bg */
-  --green: #0E5C1F;
-  --gold: #C69B35;        /* 2.5:1 on --bg: decoration only, never text on light */
-  --deep: #12371C;
+  --ink: #063909;         /* the logo's caption green, 12.4:1 on --bg */
+  --ink-soft: #2F5E36;    /* 7:1 on --bg */
+  --green: #025107;       /* the mark's green */
+  --gold: #CA9703;        /* 2.5:1 on --bg: decoration only, never text on light */
+  --deep: #014405;        /* the wordmark's green */
   --pale: #F6F8FC;
   --pale-soft: #C9DCCB;
-  --gold-lit: #E0B650;    /* gold that is allowed to carry text on deep green */
-  --hair: rgba(14, 92, 31, .22);
-  --hair-strong: rgba(14, 92, 31, .4);
+  --gold-lit: #E3B72C;    /* gold that is allowed to carry text on deep green */
+  --hair: rgba(2, 81, 7, .22);
+  --hair-strong: rgba(2, 81, 7, .4);
 
   --font: "Jost", system-ui, sans-serif;
   --font-arabic: "Amiri Quran", "Scheherazade New", "Geeza Pro", "Noto Naskh Arabic", serif;
@@ -30,7 +30,7 @@
   /* the logo symbols read these, so any region can recolour them (the footer does) */
   --mk-green: var(--green);
   --mk-gold: var(--gold);
-  --wm: var(--ink);
+  --wm: #014405;
 }
 
 /* ---------- Base ---------- */
@@ -68,14 +68,14 @@ h2 { font-size: clamp(2.2rem, 1.3rem + 3.2vw, 3.75rem); font-weight: 300; line-h
 .nav__inner { display: flex; align-items: center; justify-content: space-between; gap: .75rem; min-height: 4.25rem; }
 .brand { display: inline-flex; align-items: center; gap: .65rem; min-height: 44px; text-decoration: none; }
 .brand__mark { height: 1.9rem; width: auto; aspect-ratio: 589 / 426; }
-.brand__word { height: .82rem; width: auto; aspect-ratio: 1134 / 184; }
+.brand__word { height: 1.05rem; width: auto; aspect-ratio: 854 / 225; }
 .nav__links { display: flex; gap: .1rem; }
 .nav__links a {
   display: inline-flex; align-items: center; min-height: 44px; padding-inline: .6rem;
   font-size: .95rem; text-decoration: none; border-radius: 999px;
   transition: background-color .2s, color .2s;
 }
-.nav__links a:hover { background: rgba(14, 92, 31, .08); }
+.nav__links a:hover { background: rgba(2, 81, 7, .08); }
 .nav__links a[aria-current="page"] { font-weight: 600; }
 
 /* ---------- Home: hero ---------- */
@@ -90,11 +90,11 @@ h2 { font-size: clamp(2.2rem, 1.3rem + 3.2vw, 3.75rem); font-weight: 300; line-h
 .hero__figure { position: relative; }
 .hero__mark { width: min(84vw, 36rem); height: auto; aspect-ratio: 589 / 426; overflow: visible; }
 .hero__figure::after {
-  content: ""; position: absolute; z-index: -1; left: 50%; top: 97.4%; width: 100vw; height: 1px;
+  content: ""; position: absolute; z-index: -1; left: 50%; top: 97.6%; width: 100vw; height: 1px;
   transform: translate(-50%, -50%); background: var(--hair-strong);
 }
 .hero__name { display: grid; justify-items: center; gap: 1rem; font-weight: inherit; }
-.hero__word { width: min(72vw, 30rem); height: auto; aspect-ratio: 1134 / 184; }
+.hero__word { width: min(60vw, 22rem); height: auto; aspect-ratio: 854 / 225; }
 .hero__full { font-size: clamp(.82rem, .7rem + .55vw, 1.05rem); font-weight: 400; line-height: 1.2; letter-spacing: .26em; text-transform: uppercase; }
 .hero__meta { display: grid; gap: .1rem; font-size: 1rem; font-weight: 500; color: var(--ink-soft); }
 @media (min-width: 48rem) {
@@ -227,6 +227,6 @@ h2 { font-size: clamp(2.2rem, 1.3rem + 3.2vw, 3.75rem); font-weight: 300; line-h
 @media (max-width: 26rem) {
   .brand { gap: .5rem; }
   .brand__mark { height: 1.7rem; }
-  .brand__word { height: .72rem; }
+  .brand__word { height: .9rem; }
   .nav__links a { padding-inline: .45rem; font-size: .92rem; }
 }
